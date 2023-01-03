@@ -1,8 +1,24 @@
 import {useState, useEffect} from "react"; {/* Importamos los hooks */}
 
 const Formulario = () => {
+
+  const [nombre, setNombre] = useState(''); {/*Aca declaro el hooks useState */}
+  const [propietario, setPropietario] = useState(''); {/*Aca declaro el hooks useState */}
+  const [email, setEmail] = useState(''); {/*Aca declaro el hooks useState */}
+  const [fechaAlta, setFechaAlta] = useState(''); {/*Aca declaro el hooks useState */}
+  const [sintoma, setSintoma] = useState(''); {/*Aca declaro el hooks useState */}
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log('Enviado formulario')
+  }
+
+
   return (
-    <div className="md:w-1/2 lg:w-2/5">
+    <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-xl text-center">
         Seguimiento de Pacientes
       </h2>
@@ -13,7 +29,9 @@ const Formulario = () => {
         </span>
       </p>
 
-      <form className="bg-white shadow-md rounded-lg py-10 mt-7 px-5 mb-10"> {/* shadow:sombras, rounded:redondeado, py: top y bottom(inferior), px: right y left */}
+      <form 
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-lg py-10 mt-7 px-5 mb-10"> {/* shadow:sombras, rounded:redondeado, py: top y bottom(inferior), px: right y left */}
 
         <div>
 
@@ -26,8 +44,10 @@ const Formulario = () => {
             placeholder="Nombre de la mascota"
             id="mascota"
             className="border-2 w-full p-2 mt-2 rounded-md placeholder-gray-400"
+            value={nombre}
+            onChange={(evento) => setNombre(evento.target.value)}
           /> {/*border-2:resaltar bordes, w-full:ocupa todo el ancho, p:padding, mt:espaciado arriba */}
-
+             {/*value:hace referencia al valor que esta dentro input, el onChange es como el evenListener de JS, con evento.target.value hacemos referencia al valor del input, y eso lo guardamos en setNombre   */}
         </div>
 
         <div className="mt-5">
@@ -41,6 +61,8 @@ const Formulario = () => {
             placeholder="Nombre del propietario"
             id="propietario"
             className="border-2 w-full p-2 mt-2 rounded-md placeholder-gray-400"
+            value={propietario}
+            onChange={(evento) => setPropietario(evento.target.value)}
           /> {/*border-2:resaltar bordes, w-full:ocupa todo el ancho, p:padding, mt:espaciado arriba */}
 
         </div>
@@ -56,6 +78,8 @@ const Formulario = () => {
             placeholder="E-mail"
             id="email"
             className="border-2 w-full p-2 mt-2 rounded-md placeholder-gray-400"
+            value={email}
+            onChange={(evento) => setEmail(evento.target.value)}
           /> {/*border-2:resaltar bordes, w-full:ocupa todo el ancho, p:padding, mt:espaciado arriba, type=email */}
 
         </div>
@@ -70,6 +94,8 @@ const Formulario = () => {
             type="date"
             id="fechaAlta"
             className="border-2 w-full p-2 mt-2 rounded-md placeholder-gray-400"
+            value={fechaAlta}
+            onChange={(evento) => setFechaAlta(evento.target.value)}
           /> {/*border-2:resaltar bordes, w-full:ocupa todo el ancho, p:padding, mt:espaciado arriba, type=date, no requiere placeholder */}
 
         </div>
@@ -84,7 +110,8 @@ const Formulario = () => {
               id="sintomas"
               placeholder="Describe los síntomas"
               className="border-2 w-full p-2 mt-2 rounded-md placeholder-gray-400"
-          
+              value={sintoma}
+              onChange={(evento) => setSintoma(evento.target.value)}
           />{/*border-2:resaltar bordes, w-full:ocupa todo el ancho, p:padding, mt:espaciado arriba, type=date, no requiere placeholder */}
 
         </div>

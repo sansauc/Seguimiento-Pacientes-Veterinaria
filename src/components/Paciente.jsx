@@ -1,7 +1,7 @@
 
 const Paciente = () => {
     return (
-        <div className="bg-white mt-7 ml-3 px-5 py-10 rounded-lg shadow-xl">
+        <div className="bg-white mt-7 ml-5 px-5 py-10 rounded-lg shadow-xl">
 
             <p className="block text-gray-700 font-bold uppercase mb-3">
                 Nombre: {""}
