@@ -8,12 +8,20 @@ const Formulario = () => {
   const [fechaAlta, setFechaAlta] = useState(''); {/*Aca declaro el hooks useState */}
   const [sintoma, setSintoma] = useState(''); {/*Aca declaro el hooks useState */}
 
-
+  const [error, setError] = useState(false); {/* Para controlar los errores */}
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('Enviado formulario')
+    //Validar Formulario
+    const arrayEntry = [nombre, propietario,email,fechaAlta,sintoma]
+
+    if(arrayEntry.includes('')){
+      setError(true);
+      return;
+    }
+  
+    setError(false)
   }
 
 
@@ -32,6 +40,13 @@ const Formulario = () => {
       <form 
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 mt-7 px-5 mb-10"> {/* shadow:sombras, rounded:redondeado, py: top y bottom(inferior), px: right y left */}
+
+        {error && 
+          <div className="mb-3 bg-red-800 w-full p-2 text-white uppercase font-bold rounded-md text-center">
+            <p>
+              Todos los campos son obligatorios
+            </p>
+          </div>}
 
         <div>
 
