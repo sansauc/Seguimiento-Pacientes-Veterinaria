@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react"; {/* Importamos los hooks */}
+import Error from "./Error";
 
 const Formulario = ({pacientes, setPacientes}) => {
 
@@ -69,12 +70,7 @@ const Formulario = ({pacientes, setPacientes}) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 mt-7 px-5 mb-10"> {/* shadow:sombras, rounded:redondeado, py: top y bottom(inferior), px: right y left */}
 
-        {error && 
-          <div className="mb-3 bg-red-800 w-full p-2 text-white uppercase font-bold rounded-md text-center">
-            <p>
-              Todos los campos son obligatorios
-            </p>
-          </div>}
+        {error && <Error mensaje='Todos los campos son obligatorios'/> } {/* <Error/> --> Asi implemento un componente, le paso un mensaje */}
 
         <div>
 
