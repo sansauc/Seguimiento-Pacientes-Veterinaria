@@ -20,6 +20,13 @@ const Formulario = ({pacientes, setPacientes}) => {
     setSintoma('')
   }
 
+  const generarId = () => {
+    const random = Math.random().toString(36).substring(2) //trae un nro entre 2 y 36, y quita los 2 al principio por si viene con ","
+    const fecha = Date.now().toString()
+
+    return fecha + random
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +41,8 @@ const Formulario = ({pacientes, setPacientes}) => {
   
     setError(false)
 
+
+
     //Formamos el objeto paciente una vez realizada las validaciones correspondiente
     
     const objetoPacientes={
@@ -41,10 +50,9 @@ const Formulario = ({pacientes, setPacientes}) => {
       propietario,
       email,
       fechaAlta,
-      sintoma  
+      sintoma,
+      id: generarId()  
     }
-
-    console.log(objetoPacientes)
 
     setPacientes([...pacientes, objetoPacientes]) //una vez que termina la validación devuelvo el props al componente padre
     //toma una copia de los objetos que ya existen en pacientes (...pacientes) y le agrega los nuevos que hay en objetoPacientes

@@ -1,4 +1,4 @@
-import {useState} from "react"
+import { useState } from "react"
 import Header from "./components/Header"
 import Formulario from "./components/Formulario"
 import ListadoPacientes from "./components/ListadoPacientes"
@@ -17,12 +17,16 @@ function App() {
 
         <Formulario
 
-          pacientes = {pacientes}
+          pacientes={pacientes}
           setPacientes={setPacientes}
 
         /> {/*Paso los props pacientes y setPacientes al componente Formulario para ir cargando pacientes */}
 
-        <ListadoPacientes />
+        <ListadoPacientes
+
+          pacientes={pacientes}
+
+        /> {/* Paso loos pacientes al listado para poder mostrarlos */}
 
       </div>
     </div>
