@@ -1,14 +1,24 @@
 import {useState, useEffect} from "react"; {/* Importamos los hooks */}
 
-const Formulario = () => {
+const Formulario = ({pacientes, setPacientes}) => {
 
   const [nombre, setNombre] = useState(''); {/*Aca declaro el hooks useState */}
-  const [propietario, setPropietario] = useState(''); {/*Aca declaro el hooks useState */}
-  const [email, setEmail] = useState(''); {/*Aca declaro el hooks useState */}
-  const [fechaAlta, setFechaAlta] = useState(''); {/*Aca declaro el hooks useState */}
-  const [sintoma, setSintoma] = useState(''); {/*Aca declaro el hooks useState */}
+  const [propietario, setPropietario] = useState(''); 
+  const [email, setEmail] = useState(''); 
+  const [fechaAlta, setFechaAlta] = useState(''); 
+  const [sintoma, setSintoma] = useState(''); 
 
   const [error, setError] = useState(false); {/* Para controlar los errores */}
+  
+
+  const reiniciarFormulario = () =>{
+    setNombre(''),
+    setPropietario(''),
+    setEmail(''),
+    setFechaAlta(''),
+    setSintoma('')
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +32,23 @@ const Formulario = () => {
     }
   
     setError(false)
+
+    //Formamos el objeto paciente una vez realizada las validaciones correspondiente
+    
+    const objetoPacientes={
+      nombre, 
+      propietario,
+      email,
+      fechaAlta,
+      sintoma  
+    }
+
+    console.log(objetoPacientes)
+
+    setPacientes([...pacientes, objetoPacientes]) //una vez que termina la validación devuelvo el props al componente padre
+    //toma una copia de los objetos que ya existen en pacientes (...pacientes) y le agrega los nuevos que hay en objetoPacientes
+    reiniciarFormulario();
+
   }
 
 
@@ -38,6 +65,7 @@ const Formulario = () => {
       </p>
 
       <form 
+        
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 mt-7 px-5 mb-10"> {/* shadow:sombras, rounded:redondeado, py: top y bottom(inferior), px: right y left */}
 
@@ -129,7 +157,7 @@ const Formulario = () => {
               onChange={(evento) => setSintoma(evento.target.value)}
           />{/*border-2:resaltar bordes, w-full:ocupa todo el ancho, p:padding, mt:espaciado arriba, type=date, no requiere placeholder */}
 
-        </div>
+         </div>
 
         <input
           type="submit"
