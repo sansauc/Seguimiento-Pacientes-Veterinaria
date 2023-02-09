@@ -8,6 +8,14 @@ function App() {
   const [pacientes, setPacientes] = useState([]); /*Defino un state para los pacientes, que inicializa como un vector*/
   const [paciente, setPaciente] = useState({}); /* Defino un state para un paciente, que inicializa como un objeto*/ 
 
+  const eliminarPaciente = id => {
+    //se usa filter para sacar un elemento del arreglo
+    const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id) //devuelve todos los objetos distintos al objeto que estamos buscando
+ 
+    setPacientes(pacientesActualizados);
+
+  }
+
   return (
 
     <div className="container mx-auto mt-20">
@@ -29,6 +37,7 @@ function App() {
 
           pacientes={pacientes}
           setPaciente={setPaciente}
+          eliminarPaciente={eliminarPaciente}//tambien puedo pasar una funcion como props
 
         /> {/* Paso los pacientes al listado para poder mostrarlos, tambien paso la funcion setPaciente para que esta llegue al componente Paciente */}
 

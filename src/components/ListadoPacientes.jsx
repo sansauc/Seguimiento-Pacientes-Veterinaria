@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Paciente from "./Paciente";
 
-const ListadoPacientes = ({ pacientes, setPaciente }) => { //extraigo los pacientes que le paso con el props, tambien recibo el setPaciente para pasarle al comp Paciente
+const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente }) => { //extraigo los pacientes que le paso con el props, tambien recibo el setPaciente para pasarle al comp Paciente
 
 
   return (
@@ -31,6 +31,7 @@ const ListadoPacientes = ({ pacientes, setPaciente }) => { //extraigo los pacien
                 key={paciente.id} //Siempre que se use un map, hay que pasar un key que seria el indice creado cuando se genera un objeto
                 paciente={paciente}
                 setPaciente={setPaciente}
+                eliminarPaciente={eliminarPaciente}
 
               /> /* Importamos el compomente pasando como props al paciente, agrega uno por cada paciente se haya cargado */
             )}

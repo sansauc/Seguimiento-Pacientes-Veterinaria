@@ -1,7 +1,17 @@
 
-const Paciente = ({ paciente, setPaciente }) => {
+const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
 
-    const { nombre, propietario, email, fechaAlta, sintoma } = paciente
+    const { nombre, propietario, email, fechaAlta, sintoma, id } = paciente
+
+    const handleEliminar = () =>{
+        const respuesta = confirm("Deseas eliminar este paciente?")
+
+        if (respuesta){
+            eliminarPaciente(id); //Tomo el id del paciente y lo paso hasta el componente App para tratarlo
+        }
+
+    }
+
 
     return (
         <div className="bg-white mt-7 ml-5 px-5 py-10 rounded-lg shadow-xl">
@@ -53,8 +63,9 @@ const Paciente = ({ paciente, setPaciente }) => {
                 <input
                     type="submit"
                     className="mt-5 bg-red-600  py-2 px-10 text-white uppercase font-bold hover:bg-red-700 rounded-lg"
+                    onClick={handleEliminar}
                     value="Eliminar"
-                /> 
+                />{/*"handleEliminar sin () espera a que se dispare el evento antes de ejecutarse"*/} 
             </div>
 
 
