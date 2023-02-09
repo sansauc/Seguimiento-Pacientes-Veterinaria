@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from "./components/Header"
 import Formulario from "./components/Formulario"
 import ListadoPacientes from "./components/ListadoPacientes"
 
 function App() {
 
-  const [pacientes, setPacientes] = useState([]); /*Defino un state para los paciente, que inicializa como un vector*/
+  const [pacientes, setPacientes] = useState([]); /*Defino un state para los pacientes, que inicializa como un vector*/
+  const [paciente, setPaciente] = useState({}); /* Defino un state para un paciente, que inicialiaza como un objeto*/ 
 
   return (
 
@@ -19,14 +20,16 @@ function App() {
 
           pacientes={pacientes}
           setPacientes={setPacientes}
+          paciente={paciente}
 
-        /> {/*Paso los props pacientes y setPacientes al componente Formulario para ir cargando pacientes */}
+        /> {/*Paso los props pacientes y setPacientes al componente Formulario para ir cargando pacientes, tambien paso solo el paciente para que se cargue el formulario con los datos a modificar si el user presiona editar */}
 
         <ListadoPacientes
 
           pacientes={pacientes}
+          setPaciente={setPaciente}
 
-        /> {/* Paso loos pacientes al listado para poder mostrarlos */}
+        /> {/* Paso los pacientes al listado para poder mostrarlos, tambien paso la funcion setPaciente para que esta llegue al componente Paciente */}
 
       </div>
     </div>

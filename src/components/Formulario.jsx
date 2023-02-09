@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"; {/* Importamos los hooks */}
 import Error from "./Error";
 
-const Formulario = ({pacientes, setPacientes}) => {
+const Formulario = ({pacientes, setPacientes, paciente}) => {
 
   const [nombre, setNombre] = useState(''); {/*Aca declaro el hooks useState */}
   const [propietario, setPropietario] = useState(''); 
@@ -11,6 +11,19 @@ const Formulario = ({pacientes, setPacientes}) => {
 
   const [error, setError] = useState(false); {/* Para controlar los errores */}
   
+  useEffect ( () => {
+
+    if (Object.keys(paciente).length > 0){ //Object.keys pregunta si un objeto esta cargado o no
+      setNombre(paciente.nombre);
+      setPropietario(paciente.propietario);
+      setEmail(paciente.email);
+      setFechaAlta(paciente.fechaAlta);
+      setSintoma(paciente.sintoma);
+    }//cargo los inputs con los valores del objeto a editar
+
+  }, [paciente]);
+
+
 
   const reiniciarFormulario = () =>{
     setNombre(''),
@@ -166,7 +179,7 @@ const Formulario = ({pacientes, setPacientes}) => {
         <input
           type="submit"
           className="mt-5 bg-indigo-600 w-full p-2 text-white uppercase font-bold hover:bg-indigo-700"
-          value="Agregar Paciente"
+          value={ paciente.id ? "Editar Paciente" : "Agregar Paciente"}
         /> {/* value:cambia el nombre que se muestra en el bttn, hover:cambiar el color del bttn una vez que paso por encima*/}
 
       </form>

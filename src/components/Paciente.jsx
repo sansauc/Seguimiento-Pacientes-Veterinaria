@@ -1,8 +1,8 @@
 
-const Paciente = ({paciente}) => {
+const Paciente = ({ paciente, setPaciente }) => {
 
-    const {nombre, propietario, email, fechaAlta, sintoma} = paciente
-        
+    const { nombre, propietario, email, fechaAlta, sintoma } = paciente
+
     return (
         <div className="bg-white mt-7 ml-5 px-5 py-10 rounded-lg shadow-xl">
 
@@ -40,6 +40,23 @@ const Paciente = ({paciente}) => {
                     {sintoma}
                 </span>
             </p>
+
+            
+            <div className="flex justify-between">
+                <input
+                    type="submit"
+                    className="mt-5 bg-indigo-600  py-2 px-10 text-white uppercase font-bold hover:bg-indigo-700 rounded-lg"
+                    value="Editar"
+                    onClick={() => setPaciente(paciente)}
+                /> {/* value:cambia el nombre que se muestra en el bttn, hover:cambiar el color del bttn una vez que paso por encima, onClick= recupero el paciente con la funcion setPaciente que viene desde App.jsx*/}
+
+                <input
+                    type="submit"
+                    className="mt-5 bg-red-600  py-2 px-10 text-white uppercase font-bold hover:bg-red-700 rounded-lg"
+                    value="Eliminar"
+                /> 
+            </div>
+
 
         </div>
     )
