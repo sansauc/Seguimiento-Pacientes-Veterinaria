@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"; {/* Importamos los hooks */}
 import Error from "./Error";
 
-const Formulario = ({pacientes, setPacientes, paciente}) => {
+const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
 
   const [nombre, setNombre] = useState(''); {/*Aca declaro el hooks useState */}
   const [propietario, setPropietario] = useState(''); 
@@ -54,8 +54,6 @@ const Formulario = ({pacientes, setPacientes, paciente}) => {
   
     setError(false)
 
-
-
     //Formamos el objeto paciente una vez realizada las validaciones correspondiente
     
     const objetoPacientes={
@@ -64,11 +62,33 @@ const Formulario = ({pacientes, setPacientes, paciente}) => {
       email,
       fechaAlta,
       sintoma,
-      id: generarId()  
     }
 
-    setPacientes([...pacientes, objetoPacientes]) //una vez que termina la validación devuelvo el props al componente padre
-    //toma una copia de los objetos que ya existen en pacientes (...pacientes) y le agrega los nuevos que hay en objetoPacientes
+    if (paciente.id){
+      //editando el registro
+
+      objetoPacientes.id = paciente.id //el id que ya tengo se lo asigno al nuevo objeto
+
+      //     console.log(objetoPacientes) //objetoPacientes pasa a ser el actualizado
+//    console.log(paciente) //es la version sin editar
+      
+      const pacientesActualizados = pacientes.map( pacienteState => pacienteState.id ===
+        paciente.id ? objetoPacientes : pacienteState) //PacienteState: hace referencia al paciente actualizado, luego se identifica que registro se esta editando y se retorna el objeto 
+                                                      //actualizado (objetoPaciente) o otro paciente que no se esta modificando (pacienteState) para ir formando el array nuevo que le paso a setPacientes
+
+      setPacientes(pacientesActualizados)
+      setPaciente({})
+
+    }else{
+      //Nuevo Registro  
+
+      objetoPacientes.id = generarId();
+      setPacientes([...pacientes, objetoPacientes]) //una vez que termina la validación devuelvo el props al componente padre
+      //toma una copia de los objetos que ya existen en pacientes (...pacientes) y le agrega los nuevos que hay en objetoPacientes
+
+    }
+
+
     reiniciarFormulario();
 
   }

@@ -6,7 +6,7 @@ import ListadoPacientes from "./components/ListadoPacientes"
 function App() {
 
   const [pacientes, setPacientes] = useState([]); /*Defino un state para los pacientes, que inicializa como un vector*/
-  const [paciente, setPaciente] = useState({}); /* Defino un state para un paciente, que inicialiaza como un objeto*/ 
+  const [paciente, setPaciente] = useState({}); /* Defino un state para un paciente, que inicializa como un objeto*/ 
 
   return (
 
@@ -21,6 +21,7 @@ function App() {
           pacientes={pacientes}
           setPacientes={setPacientes}
           paciente={paciente}
+          setPaciente={setPaciente}
 
         /> {/*Paso los props pacientes y setPacientes al componente Formulario para ir cargando pacientes, tambien paso solo el paciente para que se cargue el formulario con los datos a modificar si el user presiona editar */}
 
