@@ -8,6 +8,25 @@ function App() {
   const [pacientes, setPacientes] = useState([]); /*Defino un state para los pacientes, que inicializa como un vector*/
   const [paciente, setPaciente] = useState({}); /* Defino un state para un paciente, que inicializa como un objeto*/ 
 
+   //este useEffect obtiene lo que hay en el localStorage, debido a que el arreglo siempre se carga vacio cuando se crea
+   useEffect( () => {
+
+    const obtenerLS = () => {
+
+      const pacientesLS = JSON.parse(localStorage.getItem("pacientes")) ?? [];
+
+      setPacientes(pacientesLS)
+    }
+
+    obtenerLS(); //mando a llamar la funcion anterior una vez que carga el componente
+
+  }, []) //el arreglo vacio solo se ejecuta una vez
+
+  //usamos el useEffect para cargar el localStorage, cada vez que se detecte un cambio en el arreglo Pacientes (nuevo paciente, update o delete)
+  useEffect( () => {
+    localStorage.setItem("pacientes", JSON.stringify (pacientes));
+  }, [pacientes])
+ 
   const eliminarPaciente = id => {
     //se usa filter para sacar un elemento del arreglo
     const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id) //devuelve todos los objetos distintos al objeto que estamos buscando
@@ -15,6 +34,8 @@ function App() {
     setPacientes(pacientesActualizados);
 
   }
+
+
 
   return (
 
